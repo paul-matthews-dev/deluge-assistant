@@ -1,0 +1,150 @@
+{
+    "name": "Deluge",
+    "scopeName": "source.deluge",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#operators"
+        },
+        {
+            "include": "#functions"
+        },
+        {
+            "include": "#zoho-integration"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#variables"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.deluge",
+                    "match": "//.*$"
+                },
+                {
+                    "name": "comment.block.deluge",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.deluge",
+                    "match": "\\b(if|else|for|while|return|break|continue|try|catch|throw|each|in)\\b"
+                },
+                {
+                    "name": "keyword.other.deluge",
+                    "match": "\\b(void|Map|List|Collection|info|sendmail|invokeurl)\\b"
+                },
+                {
+                    "name": "storage.type.deluge",
+                    "match": "\\b(string|int|long|decimal|boolean|date|datetime|time|file)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.deluge",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.deluge",
+                            "match": "\\\\."
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.deluge",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.deluge",
+                            "match": "\\\\."
+                        }
+                    ]
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.deluge",
+                    "match": "\\b\\d+(\\.\\d+)?\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.comparison.deluge",
+                    "match": "(==|!=|<=|>=|<|>)"
+                },
+                {
+                    "name": "keyword.operator.logical.deluge",
+                    "match": "(&&|\\|\\||!)"
+                },
+                {
+                    "name": "keyword.operator.assignment.deluge",
+                    "match": "(=|\\+=|-=|\\*=|/=)"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.deluge",
+                    "match": "(\\+|-|\\*|/|%)"
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.deluge",
+                    "match": "\\b(toDate|toDateTime|toNumber|toLong|toText|toString|toList|toMap|equals|isNull|isEmpty|isFile|isNumber|isEven|isOdd|contains|startsWith|endsWith|subText|subString|mid|left|right|trim|ltrim|rtrim|reverse|repeat|replaceAll|replaceFirst|replaceAllIgnoreCase|replaceFirstIgnoreCase|length|indexOf|lastIndexOf|toLowerCase|toUpperCase|concat|split|join|add|addAll|remove|removeAll|get|put|size|clear|distinct|sort|abs|sin|cos|tan|asin|acos|atan|sinh|cosh|tanh|asinh|acosh|atanh|atan2|sqrt|power|exp|log|log10|ceil|floor|round|truncate|max|min|average|median|sum|frac|signum)\\b"
+                }
+            ]
+        },
+        "zoho-integration": {
+            "patterns": [
+                {
+                    "name": "support.function.zoho.deluge",
+                    "match": "\\bzoho\\.(crm|desk|books|billing|projects|recruit|people|inventory|mail|cliq|sign|writer|workdrive|fsm|analytics|campaigns|commerce|expense|subscriptions|directory|connect|sheet|calendar|bookings|map|salesiq|ai)\\.(getRecords|getRecordById|createRecord|updateRecord|deleteRecord|searchRecords|getRelatedRecords|createRelatedRecord|updateRelatedRecord|create|update|get|getList|retrieve|markStatus|getOrganizations|getTemplates|getPortals|getProjectDetails|associateLogs|updateAssociateLogs|convertLead|upsert|attachFile|bulkCreate|move|split|merge|getFolders|moveToFolder|createFolder|setFlag|removeFlag|markAsRead|markAsUnread|getMessage|createTag|getLabels|setTag|uploadDocument|getDocument|updateDocument|getFieldIDs|downloadDocument|submitRequest|getTemplates|getTemplateById|createUsingTemplate|getTransitions|updateTransitions|invokeConnector|getUserData|getOrganizationInformation|setOrganizationVariable|getOrganizationVariable|getAllModuleMetadata|getModuleMetadata|postToChannel|postToBot|postToUser|sendMessage|createTeamFolder|createFolder|uploadFile|mergeAndSign|mergeAndStore|mergeAndInvoke|signDocument|getDocuments|getMergeTemplates|getSignTemplates|getFillableTemplates|geocode|reverseGeocode|distanceBetween|translate|extractKeywords|detectObject|detectFace|recognizeText|analyseSentiment|predictLanguage|parsePhoneNumber|findNamedEntities|parseAddress|getWorkspaces|createAppointment|getAvailableSlots)\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.deluge",
+                    "match": "\\b(true|false|null)\\b"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.other.deluge",
+                    "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+                }
+            ]
+        }
+    }
+}

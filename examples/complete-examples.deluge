@@ -1,0 +1,486 @@
+// ===================================================================
+// Zoho Deluge Complete Examples
+// This file demonstrates all major features of the extension
+// ===================================================================
+
+// -------------------------------------------------------------------
+// 1. ZOHO CRM EXAMPLES
+// -------------------------------------------------------------------
+
+// Fetch CRM records with pagination
+void fetchCRMLeads()
+{
+    response = zoho.crm.getRecords("Leads", 1, 50, {}, "crm_connection");
+
+    for each record in response
+    {
+        leadName = record.get("Last_Name");
+        leadEmail = record.get("Email");
+        info "Lead: " + leadName + " - " + leadEmail;
+    }
+}
+
+// Create a new lead in CRM
+void createCRMLead()
+{
+    leadData = Map();
+    leadData.put("Last_Name", "Johnson");
+    leadData.put("First_Name", "Sarah");
+    leadData.put("Company", "TechCorp");
+    leadData.put("Email", "sarah@techcorp.com");
+    leadData.put("Phone", "+1-555-0123");
+
+    response = zoho.crm.createRecord("Leads", leadData, "crm_connection");
+    info "Created Lead ID: " + response.get("id");
+}
+
+// Search CRM records with criteria
+void searchCRMContacts()
+{
+    criteria = "((Email:equals:john@example.com) or (Phone:starts_with:+1))";
+    results = zoho.crm.searchRecords("Contacts", criteria, "crm_connection");
+
+    info "Found " + results.size() + " contacts";
+}
+
+// Convert lead to contact and deal
+void convertLead(leadId)
+{
+    convertData = Map();
+    convertData.put("Account_Name", "New Account Inc");
+    convertData.put("Deal_Name", "Q4 Deal");
+    convertData.put("Amount", 50000);
+
+    response = zoho.crm.convertLead("Leads", leadId, convertData, "crm_connection");
+    info "Lead converted successfully";
+}
+
+// Bulk create records
+void bulkCreateLeads()
+{
+    leadsList = List();
+
+    // Create multiple lead records
+    for i from 1 to 5
+    {
+        leadMap = Map();
+        leadMap.put("Last_Name", "Lead " + i);
+        leadMap.put("Company", "Company " + i);
+        leadMap.put("Email", "lead" + i + "@example.com");
+        leadsList.add(leadMap);
+    }
+
+    response = zoho.crm.bulkCreate("Leads", leadsList, "crm_connection");
+    info "Bulk created " + leadsList.size() + " leads";
+}
+
+// -------------------------------------------------------------------
+// 2. ZOHO DESK EXAMPLES
+// -------------------------------------------------------------------
+
+// Create a support ticket
+void createDeskTicket()
+{
+    ticketData = Map();
+    ticketData.put("subject", "Customer Login Issue");
+    ticketData.put("description", "Customer unable to login to portal");
+    ticketData.put("contactId", "123456789");
+    ticketData.put("departmentId", "987654321");
+    ticketData.put("priority", "High");
+    ticketData.put("status", "Open");
+    ticketData.put("channel", "Email");
+
+    response = zoho.desk.create(org_id, "tickets", ticketData, "desk_connection");
+    info "Ticket created: " + response.get("ticketNumber");
+}
+
+// Search desk tickets
+void searchDeskTickets()
+{
+    searchMap = Map();
+    searchMap.put("subject", "Login");
+    searchMap.put("status", "Open");
+
+    tickets = zoho.desk.searchRecords(org_id, "tickets", searchMap, 0, 20, "desk_connection");
+
+    for each ticket in tickets
+    {
+        info "Ticket #" + ticket.get("ticketNumber") + ": " + ticket.get("subject");
+    }
+}
+
+// Update ticket status
+void updateTicketStatus(ticketId)
+{
+    updateData = Map();
+    updateData.put("status", "Closed");
+    updateData.put("resolution", "Issue resolved successfully");
+
+    response = zoho.desk.update(org_id, "tickets", ticketId, updateData, "desk_connection");
+    info "Ticket updated";
+}
+
+// -------------------------------------------------------------------
+// 3. ZOHO BOOKS/BILLING EXAMPLES
+// -------------------------------------------------------------------
+
+// Create customer in Books
+void createBooksCustomer()
+{
+    customerData = Map();
+    customerData.put("contact_name", "John Doe");
+    customerData.put("company_name", "Doe Industries");
+    customerData.put("email", "john@doeindustries.com");
+    customerData.put("phone", "+1-555-0199");
+
+    response = zoho.books.create("Contacts", org_id, customerData, "books_connection");
+    info "Customer created: " + response.get("contact_id");
+}
+
+// Create invoice
+void createInvoice()
+{
+    invoiceData = Map();
+    invoiceData.put("customer_id", "123456");
+    invoiceData.put("date", zoho.currentdate.toString("yyyy-MM-dd"));
+    invoiceData.put("due_date", zoho.currentdate.addDay(30).toString("yyyy-MM-dd"));
+
+    lineItems = List();
+    item1 = Map();
+    item1.put("item_id", "789");
+    item1.put("quantity", 2);
+    item1.put("rate", 100);
+    lineItems.add(item1);
+
+    invoiceData.put("line_items", lineItems);
+
+    response = zoho.books.create("Invoices", org_id, invoiceData, "books_connection");
+    info "Invoice created: " + response.get("invoice_number");
+}
+
+// -------------------------------------------------------------------
+// 4. ZOHO PROJECTS EXAMPLES
+// -------------------------------------------------------------------
+
+// Create project task
+void createProjectTask()
+{
+    taskData = Map();
+    taskData.put("name", "Design Homepage");
+    taskData.put("description", "Create mockups for new homepage");
+    taskData.put("priority", "High");
+    taskData.put("start_date", zoho.currentdate.toString("MM-dd-yyyy"));
+    taskData.put("end_date", zoho.currentdate.addDay(7).toString("MM-dd-yyyy"));
+
+    response = zoho.projects.create(portal_name, project_id, "tasks", taskData, "projects_connection");
+    info "Task created: " + response.get("tasks").get(0).get("name");
+}
+
+// Log time to task
+void logTimeToTask(taskId)
+{
+    logData = Map();
+    logData.put("date", zoho.currentdate.toString("MM-dd-yyyy"));
+    logData.put("hours", "04:30");
+    logData.put("bill_status", "Billable");
+    logData.put("notes", "Frontend development work");
+
+    response = zoho.projects.associateLogs(portal_name, project_id, "tasks", taskId, logData, "projects_connection");
+    info "Time log created";
+}
+
+// -------------------------------------------------------------------
+// 5. EMAIL AND COMMUNICATION
+// -------------------------------------------------------------------
+
+// Send welcome email
+void sendWelcomeEmail(customerEmail, customerName)
+{
+    sendmail
+    [
+        from: "noreply@company.com"
+        to: customerEmail
+        subject: "Welcome to Our Service!"
+        message: "Dear " + customerName + ",\n\nThank you for signing up!\n\nBest regards,\nTeam"
+    ]
+
+    info "Welcome email sent to " + customerEmail;
+}
+
+// Post to Cliq channel
+void postToCliqChannel()
+{
+    message = "🎉 New customer signed up: Sarah Johnson from TechCorp";
+    response = zoho.cliq.postToChannel("sales-team", message, {"connections": "cliq_connection"});
+    info "Message posted to Cliq";
+}
+
+// -------------------------------------------------------------------
+// 6. DOCUMENT MANAGEMENT
+// -------------------------------------------------------------------
+
+// Merge Writer document
+void mergeWriterDocument()
+{
+    documentId = "doc_12345";
+
+    fields = Map();
+    fields.put("CustomerName", "John Doe");
+    fields.put("ContractAmount", "$50,000");
+    fields.put("StartDate", zoho.currentdate.toString("MMMM dd, yyyy"));
+
+    dataMap = Map();
+    dataMap.put("data", fields);
+
+    mergeDetails = Map();
+    mergeDetails.put("merge_data", dataMap);
+
+    outputSettings = Map();
+    outputSettings.put("doc_name", "Contract_" + zoho.currentdate.toString("yyyyMMdd"));
+    outputSettings.put("folder_id", "folder_xyz");
+    outputSettings.put("output_format", "pdf");
+
+    response = zoho.writer.v2.mergeAndStore(documentId, mergeDetails, outputSettings, Map(), "writer_connection");
+    info "Document merged: " + response.get("document_name");
+}
+
+// Create folder in WorkDrive
+void createWorkDriveFolder()
+{
+    response = zoho.workdrive.createFolder("Q4 2025 Reports", parent_folder_id, "workdrive_connection");
+    info "Folder created: " + response.get("data").get("attributes").get("name");
+}
+
+// -------------------------------------------------------------------
+// 7. AI SERVICES
+// -------------------------------------------------------------------
+
+// Translate text
+void translateText()
+{
+    englishText = "Welcome to our service. How can we help you today?";
+    spanishText = zoho.ai.translate(englishText, "es");
+    frenchText = zoho.ai.translate(englishText, "fr");
+
+    info "Spanish: " + spanishText;
+    info "French: " + frenchText;
+}
+
+// Extract keywords from text
+void extractKeywordsFromFeedback()
+{
+    feedback = "The customer service was excellent but the product delivery was delayed. Overall satisfied with the quality.";
+    keywords = zoho.ai.extractKeywords(feedback);
+
+    info "Keywords found: " + keywords;
+}
+
+// Analyze sentiment
+void analyzeFeedbackSentiment()
+{
+    feedback = "I absolutely love this product! Best purchase ever.";
+    sentiment = zoho.ai.analyseSentiment(feedback);
+
+    info "Sentiment: " + sentiment.get("sentiment");
+    info "Score: " + sentiment.get("score");
+}
+
+// -------------------------------------------------------------------
+// 8. DATA MANIPULATION
+// -------------------------------------------------------------------
+
+// Working with Maps and Lists
+void dataManipulationExample()
+{
+    // Create and populate a Map
+    customerMap = Map();
+    customerMap.put("name", "Alice Smith");
+    customerMap.put("email", "alice@example.com");
+    customerMap.put("age", 30);
+
+    // Create and populate a List
+    productList = List();
+    productList.add("Laptop");
+    productList.add("Mouse");
+    productList.add("Keyboard");
+
+    // Iterate through List
+    for each product in productList
+    {
+        info "Product: " + product;
+    }
+
+    // Check if key exists
+    if(customerMap.containsKey("email"))
+    {
+        info "Email: " + customerMap.get("email");
+    }
+}
+
+// String manipulation
+void stringOperations()
+{
+    text = "  Zoho Deluge Programming  ";
+
+    // Trim whitespace
+    trimmed = text.trim();
+
+    // Convert case
+    upper = trimmed.toUpperCase();
+    lower = trimmed.toLowerCase();
+
+    // Split string
+    words = trimmed.split(" ");
+
+    // Check contains
+    if(trimmed.contains("Deluge"))
+    {
+        info "Contains Deluge!";
+    }
+
+    // Replace text
+    replaced = trimmed.replaceAll("Programming", "Scripting");
+
+    info "Original: " + text;
+    info "Trimmed: " + trimmed;
+    info "Upper: " + upper;
+}
+
+// -------------------------------------------------------------------
+// 9. ERROR HANDLING
+// -------------------------------------------------------------------
+
+// Try-catch error handling
+void safeAPICall()
+{
+    try
+    {
+        response = zoho.crm.getRecords("Leads", 1, 10, {}, "crm_connection");
+        info "Records fetched successfully";
+    }
+    catch(e)
+    {
+        info "Error occurred: " + e;
+        // Log error or send notification
+        sendmail
+        [
+            from: "alerts@company.com"
+            to: "admin@company.com"
+            subject: "API Error Alert"
+            message: "CRM API call failed: " + e
+        ]
+    }
+}
+
+// -------------------------------------------------------------------
+// 10. CONDITIONAL LOGIC AND LOOPS
+// -------------------------------------------------------------------
+
+// Complex conditional logic
+void processLeadByPriority(leadScore)
+{
+    if(leadScore >= 80)
+    {
+        priority = "Hot";
+        assignTo = "senior-sales@company.com";
+    }
+    else if(leadScore >= 50)
+    {
+        priority = "Warm";
+        assignTo = "sales@company.com";
+    }
+    else
+    {
+        priority = "Cold";
+        assignTo = "nurture@company.com";
+    }
+
+    info "Lead Priority: " + priority;
+    info "Assigned to: " + assignTo;
+}
+
+// Loop with counter
+void generateReports()
+{
+    for i from 1 to 12
+    {
+        monthName = zoho.currentdate.subMonth(i).toString("MMMM yyyy");
+        info "Generating report for: " + monthName;
+
+        // Generate monthly report logic here
+    }
+}
+
+// -------------------------------------------------------------------
+// 11. INVOKE URL FOR EXTERNAL APIs
+// -------------------------------------------------------------------
+
+// Call external REST API
+void callExternalAPI()
+{
+    // GET request
+    getResponse = invokeurl
+    [
+        url: "https://api.example.com/data"
+        type: GET
+        connection: "external_api_connection"
+    ];
+
+    info "GET Response: " + getResponse;
+
+    // POST request with parameters
+    params = Map();
+    params.put("name", "Test");
+    params.put("value", "123");
+
+    postResponse = invokeurl
+    [
+        url: "https://api.example.com/create"
+        type: POST
+        parameters: params.toString()
+        connection: "external_api_connection"
+    ];
+
+    info "POST Response: " + postResponse;
+}
+
+// -------------------------------------------------------------------
+// 12. DATE AND TIME OPERATIONS
+// -------------------------------------------------------------------
+
+void dateTimeOperations()
+{
+    // Current date and time
+    today = zoho.currentdate;
+    now = zoho.currenttime;
+
+    // Format dates
+    formatted = today.toString("dd-MMM-yyyy");
+
+    // Add/subtract days
+    tomorrow = today.addDay(1);
+    lastWeek = today.subDay(7);
+    nextMonth = today.addMonth(1);
+
+    // Date comparisons
+    futureDate = zoho.currentdate.addDay(30);
+    if(futureDate > today)
+    {
+        info "Future date is after today";
+    }
+
+    info "Today: " + formatted;
+    info "Tomorrow: " + tomorrow.toString("dd-MMM-yyyy");
+}
+
+// -------------------------------------------------------------------
+// END OF EXAMPLES
+// ===================================================================
+
+// Main execution function
+void main()
+{
+    info "=== Zoho Deluge Examples ===";
+    info "Test IntelliSense by typing: zoho.";
+    info "Test snippets by typing: crm-get and pressing Tab";
+}

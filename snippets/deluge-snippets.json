@@ -1,0 +1,402 @@
+{
+    "CRM Get Records": {
+        "prefix": "crm-get",
+        "body": [
+            "response = zoho.crm.getRecords(\"${1:Leads}\", ${2:1}, ${3:200}, {}, \"${4:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Fetch records from Zoho CRM"
+    },
+    "CRM Create Record": {
+        "prefix": "crm-create",
+        "body": [
+            "dataMap = Map();",
+            "dataMap.put(\"${1:Last_Name}\", \"${2:value}\");",
+            "dataMap.put(\"${3:Company}\", \"${4:value}\");",
+            "",
+            "response = zoho.crm.createRecord(\"${5:Leads}\", dataMap, \"${6:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Create a new CRM record"
+    },
+    "CRM Update Record": {
+        "prefix": "crm-update",
+        "body": [
+            "dataMap = Map();",
+            "dataMap.put(\"${1:field_name}\", \"${2:new_value}\");",
+            "",
+            "response = zoho.crm.updateRecord(\"${3:Leads}\", \"${4:record_id}\", dataMap, \"${5:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Update an existing CRM record"
+    },
+    "CRM Search Records": {
+        "prefix": "crm-search",
+        "body": [
+            "criteria = \"((${1:Email}:equals:${2:test@example.com}))\";",
+            "response = zoho.crm.searchRecords(\"${3:Leads}\", criteria, \"${4:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Search CRM records with criteria"
+    },
+    "Desk Get Records": {
+        "prefix": "desk-get",
+        "body": [
+            "response = zoho.desk.getRecords(${1:org_id}, \"${2:tickets}\", ${3:0}, ${4:50}, \"${5:desk_connection}\");",
+            "info response;"
+        ],
+        "description": "Fetch records from Zoho Desk"
+    },
+    "Desk Create Ticket": {
+        "prefix": "desk-create",
+        "body": [
+            "ticketData = Map();",
+            "ticketData.put(\"subject\", \"${1:ticket_subject}\");",
+            "ticketData.put(\"description\", \"${2:ticket_description}\");",
+            "ticketData.put(\"contactId\", \"${3:contact_id}\");",
+            "ticketData.put(\"departmentId\", \"${4:department_id}\");",
+            "ticketData.put(\"priority\", \"${5:High}\");",
+            "",
+            "response = zoho.desk.create(${6:org_id}, \"tickets\", ticketData, \"${7:desk_connection}\");",
+            "info response;"
+        ],
+        "description": "Create a new Desk ticket"
+    },
+    "Desk Search Records": {
+        "prefix": "desk-search",
+        "body": [
+            "searchMap = Map();",
+            "searchMap.put(\"${1:subject}\", \"${2:search_text}\");",
+            "",
+            "response = zoho.desk.searchRecords(${3:org_id}, \"${4:tickets}\", searchMap, ${5:0}, ${6:10}, \"${7:desk_connection}\");",
+            "info response;"
+        ],
+        "description": "Search Desk records"
+    },
+    "For Each Loop": {
+        "prefix": "foreach",
+        "body": [
+            "for each ${1:item} in ${2:collection}",
+            "{",
+            "\t${3:// Process item}",
+            "\tinfo ${1:item};",
+            "}"
+        ],
+        "description": "For each loop"
+    },
+    "If Statement": {
+        "prefix": "if",
+        "body": [
+            "if(${1:condition})",
+            "{",
+            "\t${2:// code}",
+            "}"
+        ],
+        "description": "If statement"
+    },
+    "If-Else Statement": {
+        "prefix": "ifelse",
+        "body": [
+            "if(${1:condition})",
+            "{",
+            "\t${2:// code}",
+            "}",
+            "else",
+            "{",
+            "\t${3:// code}",
+            "}"
+        ],
+        "description": "If-else statement"
+    },
+    "Try-Catch": {
+        "prefix": "try",
+        "body": [
+            "try",
+            "{",
+            "\t${1:// code}",
+            "}",
+            "catch(e)",
+            "{",
+            "\tinfo \"Error: \" + e;",
+            "\t${2:// error handling}",
+            "}"
+        ],
+        "description": "Try-catch block"
+    },
+    "Send Mail": {
+        "prefix": "sendmail",
+        "body": [
+            "sendmail",
+            "[",
+            "\tfrom: \"${1:sender@example.com}\"",
+            "\tto: \"${2:recipient@example.com}\"",
+            "\tsubject: \"${3:Subject}\"",
+            "\tmessage: \"${4:Message body}\"",
+            "]"
+        ],
+        "description": "Send email"
+    },
+    "Invoke URL GET": {
+        "prefix": "invokeurl-get",
+        "body": [
+            "response = invokeurl",
+            "[",
+            "\turl: \"${1:https://api.example.com/endpoint}\"",
+            "\ttype: GET",
+            "\tconnection: \"${2:connection_name}\"",
+            "];",
+            "info response;"
+        ],
+        "description": "Invoke URL with GET request"
+    },
+    "Invoke URL POST": {
+        "prefix": "invokeurl-post",
+        "body": [
+            "params = Map();",
+            "params.put(\"${1:key}\", \"${2:value}\");",
+            "",
+            "response = invokeurl",
+            "[",
+            "\turl: \"${3:https://api.example.com/endpoint}\"",
+            "\ttype: POST",
+            "\tparameters: params.toString()",
+            "\tconnection: \"${4:connection_name}\"",
+            "];",
+            "info response;"
+        ],
+        "description": "Invoke URL with POST request"
+    },
+    "Create Map": {
+        "prefix": "map",
+        "body": [
+            "${1:myMap} = Map();",
+            "${1:myMap}.put(\"${2:key}\", \"${3:value}\");",
+            "$0"
+        ],
+        "description": "Create a new Map"
+    },
+    "Create List": {
+        "prefix": "list",
+        "body": [
+            "${1:myList} = List();",
+            "${1:myList}.add(\"${2:value}\");",
+            "$0"
+        ],
+        "description": "Create a new List"
+    },
+    "Books Get Organizations": {
+        "prefix": "books-orgs",
+        "body": [
+            "response = zoho.books.getOrganizations(\"${1:books_connection}\");",
+            "info response;"
+        ],
+        "description": "Fetch Zoho Books organizations"
+    },
+    "Books Create Record": {
+        "prefix": "books-create",
+        "body": [
+            "dataMap = Map();",
+            "dataMap.put(\"${1:field_name}\", \"${2:value}\");",
+            "",
+            "response = zoho.books.create(\"${3:Customers}\", \"${4:org_id}\", dataMap, \"${5:books_connection}\");",
+            "info response;"
+        ],
+        "description": "Create Zoho Books record"
+    },
+    "Projects Create Task": {
+        "prefix": "projects-task",
+        "body": [
+            "taskData = Map();",
+            "taskData.put(\"name\", \"${1:Task Name}\");",
+            "taskData.put(\"description\", \"${2:Task Description}\");",
+            "",
+            "response = zoho.projects.create(\"${3:portal_name}\", \"${4:project_id}\", \"tasks\", taskData, \"${5:projects_connection}\");",
+            "info response;"
+        ],
+        "description": "Create task in Zoho Projects"
+    },
+    "AI Translate": {
+        "prefix": "ai-translate",
+        "body": [
+            "translatedText = zoho.ai.translate(\"${1:text_to_translate}\", \"${2:es}\");",
+            "info translatedText;"
+        ],
+        "description": "Translate text using Zoho AI"
+    },
+    "AI Extract Keywords": {
+        "prefix": "ai-keywords",
+        "body": [
+            "keywords = zoho.ai.extractKeywords(\"${1:text_content}\");",
+            "info keywords;"
+        ],
+        "description": "Extract keywords using Zoho AI"
+    },
+    "Writer Merge and Store": {
+        "prefix": "writer-merge",
+        "body": [
+            "documentId = \"${1:document_id}\";",
+            "",
+            "fields = Map();",
+            "fields.put(\"${2:field_name}\", \"${3:value}\");",
+            "",
+            "dataMap = Map();",
+            "dataMap.put(\"data\", fields);",
+            "",
+            "mergeDetails = Map();",
+            "mergeDetails.put(\"merge_data\", dataMap);",
+            "",
+            "outputSettings = Map();",
+            "outputSettings.put(\"doc_name\", \"${4:output_name}\");",
+            "outputSettings.put(\"folder_id\", \"${5:folder_id}\");",
+            "outputSettings.put(\"output_format\", \"${6:pdf}\");",
+            "",
+            "response = zoho.writer.v2.mergeAndStore(documentId, mergeDetails, outputSettings, Map(), \"${7:writer_connection}\");",
+            "info response;"
+        ],
+        "description": "Merge and store Writer document"
+    },
+    "WorkDrive Create Folder": {
+        "prefix": "workdrive-folder",
+        "body": [
+            "response = zoho.workdrive.createFolder(\"${1:Folder Name}\", \"${2:parent_folder_id}\", \"${3:workdrive_connection}\");",
+            "info response;"
+        ],
+        "description": "Create folder in Zoho WorkDrive"
+    },
+    "WorkDrive Upload File": {
+        "prefix": "workdrive-upload",
+        "body": [
+            "response = zoho.workdrive.uploadFile(\"${1:folder_id}\", ${2:file_object}, \"${3:workdrive_connection}\");",
+            "info response;"
+        ],
+        "description": "Upload file to Zoho WorkDrive"
+    },
+    "Cliq Post to Channel": {
+        "prefix": "cliq-post",
+        "body": [
+            "response = zoho.cliq.postToChannel(\"${1:channel_id}\", \"${2:message}\", {\"connections\": \"${3:cliq_connection}\"});",
+            "info response;"
+        ],
+        "description": "Post message to Zoho Cliq channel"
+    },
+    "Function Definition": {
+        "prefix": "func",
+        "body": [
+            "void ${1:functionName}(${2:parameters})",
+            "{",
+            "\t${3:// function body}",
+            "\t$0",
+            "}"
+        ],
+        "description": "Define a function"
+    },
+    "Info Log": {
+        "prefix": "info",
+        "body": [
+            "info \"${1:message}: \" + ${2:variable};"
+        ],
+        "description": "Log information"
+    },
+    "Date Functions": {
+        "prefix": "date",
+        "body": [
+            "currentDate = zoho.currentdate;",
+            "formattedDate = currentDate.toString(\"${1:dd-MMM-yyyy}\");",
+            "info formattedDate;"
+        ],
+        "description": "Work with dates"
+    },
+    "String Operations": {
+        "prefix": "string",
+        "body": [
+            "${1:myString} = \"${2:text}\";",
+            "${1:myString} = ${1:myString}.toLowerCase();",
+            "${1:myString} = ${1:myString}.trim();",
+            "info ${1:myString};"
+        ],
+        "description": "Common string operations"
+    },
+    "COQL Query (CRM)": {
+        "prefix": "coql",
+        "body": [
+            "queryMap = Map();",
+            "queryMap.put(\"select_query\", \"select ${1:fields} from ${2:Module} where ${3:condition}\");",
+            "",
+            "response = invokeurl",
+            "[",
+            "\turl: \"https://www.zohoapis.com/crm/v8/coql\"",
+            "\ttype: POST",
+            "\tparameters: queryMap.toString()",
+            "\tconnection: \"${4:crm_connection}\"",
+            "];",
+            "info response;"
+        ],
+        "description": "Execute COQL query in CRM"
+    },
+    "Bulk Create Records (CRM)": {
+        "prefix": "crm-bulk",
+        "body": [
+            "recordsList = List();",
+            "",
+            "for each ${1:item} in ${2:dataCollection}",
+            "{",
+            "\trecordMap = Map();",
+            "\trecordMap.put(\"${3:field}\", ${1:item}.get(\"${4:key}\"));",
+            "\trecordsList.add(recordMap);",
+            "}",
+            "",
+            "response = zoho.crm.bulkCreate(\"${5:Leads}\", recordsList, \"${6:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Bulk create CRM records"
+    },
+    "Get Related Records (CRM)": {
+        "prefix": "crm-related",
+        "body": [
+            "response = zoho.crm.getRelatedRecords(\"${1:Contacts}\", \"${2:Leads}\", \"${3:record_id}\", \"${4:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Fetch related CRM records"
+    },
+    "Convert Lead (CRM)": {
+        "prefix": "crm-convert",
+        "body": [
+            "convertData = Map();",
+            "convertData.put(\"Account_Name\", \"${1:Account Name}\");",
+            "convertData.put(\"Deal_Name\", \"${2:Deal Name}\");",
+            "",
+            "response = zoho.crm.convertLead(\"Leads\", \"${3:lead_id}\", convertData, \"${4:crm_connection}\");",
+            "info response;"
+        ],
+        "description": "Convert lead to contact/deal"
+    },
+    "Desk Move Ticket": {
+        "prefix": "desk-move",
+        "body": [
+            "response = zoho.desk.move(${1:org_id}, \"${2:ticket_id}\", \"${3:department_id}\", \"${4:desk_connection}\");",
+            "info response;"
+        ],
+        "description": "Move Desk ticket to another department"
+    },
+    "Recruit Create Record": {
+        "prefix": "recruit-create",
+        "body": [
+            "candidateData = Map();",
+            "candidateData.put(\"First_Name\", \"${1:first_name}\");",
+            "candidateData.put(\"Last_Name\", \"${2:last_name}\");",
+            "candidateData.put(\"Email\", \"${3:email}\");",
+            "",
+            "response = zoho.recruit.addRecord(\"${4:Candidates}\", candidateData, \"${5:recruit_connection}\");",
+            "info response;"
+        ],
+        "description": "Create Recruit candidate"
+    },
+    "People Get Records": {
+        "prefix": "people-get",
+        "body": [
+            "response = zoho.people.getRecords(\"${1:Employees}\", \"${2:people_connection}\");",
+            "info response;"
+        ],
+        "description": "Fetch Zoho People records"
+    }
+}

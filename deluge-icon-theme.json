@@ -1,0 +1,18 @@
+{
+  "iconDefinitions": {
+    "deluge-file": {
+      "iconPath": "./icons/deluge-file.svg"
+    }
+  },
+  "fileExtensions": {
+    "deluge": "deluge-file",
+    "ds": "deluge-file"
+  },
+  "fileNames": {
+  },
+  "folderNames": {
+  },
+  "languageIds": {
+    "deluge": "deluge-file"
+  }
+}

@@ -1,0 +1,108 @@
+{
+    "name": "zoho-deluge",
+    "displayName": "Zoho Deluge",
+    "description": "Complete language support for Zoho Deluge with CRM, Desk, and all service integrations",
+    "version": "1.0.0",
+    "publisher": "your-publisher-name",
+    "author": {
+        "name": "Your Name",
+        "email": "your.email@example.com",
+        "url": "https://your-website.com"
+    },
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets",
+        "Linters"
+    ],
+    "keywords": [
+        "zoho",
+        "deluge",
+        "crm",
+        "desk",
+        "low-code"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "languages": [
+            {
+                "id": "deluge",
+                "aliases": [
+                    "Deluge",
+                    "deluge"
+                ],
+                "extensions": [
+                    ".deluge",
+                    ".ds"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "deluge",
+                "scopeName": "source.deluge",
+                "path": "./syntaxes/deluge.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "deluge",
+                "path": "./snippets/deluge-snippets.json"
+            }
+        ],
+        "configuration": {
+            "title": "Zoho Deluge",
+            "properties": {
+                "deluge.targetService": {
+                    "type": "string",
+                    "default": "all",
+                    "enum": [
+                        "all",
+                        "crm",
+                        "desk",
+                        "creator",
+                        "books",
+                        "projects"
+                    ],
+                    "description": "Target Zoho service for specialized IntelliSense"
+                }
+            }
+        },
+        "iconThemes": [
+            {
+                "id": "deluge-icons",
+                "label": "Deluge File Icons",
+                "path": "./deluge-icon-theme.json"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.75.0",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.45.0",
+        "@typescript-eslint/parser": "^5.45.0",
+        "eslint": "^8.28.0",
+        "typescript": "^4.9.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/zoho-deluge-vscode"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/zoho-deluge-vscode/issues"
+    },
+    "homepage": "https://github.com/yourusername/zoho-deluge-vscode#readme",
+    "license": "MIT"
+}
