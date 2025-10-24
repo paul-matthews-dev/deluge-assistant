@@ -1,8 +1,22 @@
-# Deluge Assistant
+<div align="center">
+  <img src="media/icon.png" alt="Deluge Assistant Logo" width="128" height="128">
+
+  # Deluge Assistant
+
+  **Complete language support and development assistant for Zoho Deluge scripting language**
+
+  [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/paul-matthews-dev/deluge-assistant)
+  [![VS Code](https://img.shields.io/badge/VS%20Code-1.75.0%2B-blue.svg)](https://code.visualstudio.com/)
+  [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-4.9.3+-blue.svg)](https://www.typescriptlang.org/)
+
+</div>
+
+## 🚀 Overview
 
 Complete language support and development assistant for Zoho Deluge scripting language with comprehensive IntelliSense for CRM, Desk, and all Zoho service integrations.
 
-## Features
+## ✨ Features
 
 ### 🎨 Syntax Highlighting
 - Full syntax highlighting for Deluge keywords, operators, and data types
@@ -43,7 +57,7 @@ Over 40 pre-built code snippets for common operations:
 - `try` - Try-catch block
 - And many more...
 
-## Usage
+## 🎯 Usage
 
 ### Basic Example
 ```deluge
@@ -69,21 +83,27 @@ response = zoho.desk.create(org_id, "tickets", ticketData, "desk_connection");
 2. Press `Tab` or `Enter` to expand the snippet
 3. Fill in the placeholders with your values
 
-## Installation
+## 📦 Installation
 
-### From Source
-1. Clone this repository
-2. Run `npm install` to install dependencies
-3. Run `npm run compile` to compile TypeScript
-4. Press `F5` in VS Code to launch the extension in debug mode
+### 🚀 From VS Code Marketplace (Recommended)
+*Coming soon - extension will be published to the marketplace*
 
-### From VSIX (Once Published)
-1. Download the `.vsix` file
-2. In VS Code, go to Extensions view
+### 📁 From VSIX File
+1. Download the latest `.vsix` file from [Releases](https://github.com/paul-matthews-dev/deluge-assistant/releases)
+2. In VS Code, go to Extensions view (`Ctrl+Shift+X`)
 3. Click "..." menu → "Install from VSIX"
 4. Select the downloaded file
 
-## Configuration
+### 🛠️ From Source (Development)
+```bash
+git clone https://github.com/paul-matthews-dev/deluge-assistant.git
+cd deluge-assistant
+npm install
+npm run compile
+# Press F5 in VS Code to launch extension in debug mode
+```
+
+## ⚙️ Configuration
 
 Configure the extension in VS Code settings:
 
@@ -93,13 +113,13 @@ Configure the extension in VS Code settings:
 }
 ```
 
-## File Associations
+## 📁 File Associations
 
 The extension automatically activates for:
 - `.deluge` files
 - `.ds` files
 
-## Integration Task Reference
+## 📚 Integration Task Reference
 
 ### CRM
 - `getRecords(module, page, per_page, query, connection)`
@@ -136,16 +156,17 @@ The extension automatically activates for:
 - `recognizeText(image_url, model_type, language)`
 - `analyseSentiment(text)`
 
-## Requirements
+## 📋 Requirements
 
-- Visual Studio Code 1.75.0 or higher
-- TypeScript 4.9.3 or higher (for development)
+- **Visual Studio Code** 1.75.0 or higher
+- **TypeScript** 4.9.3 or higher (for development)
+- **Node.js** 16.x or higher (for development)
 
-## Known Issues
+## 🐛 Known Issues
 
 None currently. Please report issues on GitHub.
 
-## Release Notes
+## 📝 Release Notes
 
 ### 1.0.0
 - Initial release
@@ -155,7 +176,7 @@ None currently. Please report issues on GitHub.
 - Hover documentation
 - Support for CRM, Desk, Books, Projects, and 15+ other Zoho services
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -165,23 +186,36 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch
 5. Open a Pull Request
 
-## Resources
+## 🔗 Resources
 
 - [Zoho Deluge Documentation](https://www.zoho.com/deluge/help/)
 - [Zoho CRM API](https://www.zoho.com/crm/developer/docs/)
 - [Zoho Desk API](https://desk.zoho.com/support/APIDocument.do)
 
-## License
+## 📄 License
 
 MIT License - see LICENSE file for details
 
-## Author
+## 👨‍💻 Author
+
+<div align="center">
 
 **Paul Matthews**
-- GitHub: [@paul-matthews-dev](https://github.com/paul-matthews-dev)
+
+[![GitHub](https://img.shields.io/badge/GitHub-paul--matthews--dev-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/paul-matthews-dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/-paulmatthews/)
 
 Built with ❤️ for the Zoho developer community
 
-## Support
+</div>
+
+## 🆘 Support
+
+<div align="center">
+
+[![Issues](https://img.shields.io/badge/Issues-GitHub-red?style=for-the-badge&logo=github&logoColor=white)](https://github.com/paul-matthews-dev/deluge-assistant/issues)
+[![Discussions](https://img.shields.io/badge/Discussions-GitHub-green?style=for-the-badge&logo=github&logoColor=white)](https://github.com/paul-matthews-dev/deluge-assistant/discussions)
 
 For issues and feature requests, please use the GitHub issue tracker.
+
+</div>
