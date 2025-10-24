@@ -70,14 +70,7 @@
                     "description": "Target Zoho service for specialized IntelliSense"
                 }
             }
-        },
-        "iconThemes": [
-            {
-                "id": "deluge-assistant-icons",
-                "label": "Deluge Assistant File Icons",
-                "path": "./deluge-icon-theme.json"
-            }
-        ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
