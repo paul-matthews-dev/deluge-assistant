@@ -1,7 +1,7 @@
 {
   "iconDefinitions": {
     "deluge-file": {
-      "iconPath": "./icons/deluge-file.svg"
+      "iconPath": "media/icon.png"
     }
   },
   "fileExtensions": {
