@@ -1,6 +1,6 @@
-# Zoho Deluge Language Support
+# Deluge Assistant
 
-Complete language support for Zoho Deluge scripting language with comprehensive IntelliSense for CRM, Desk, and all Zoho service integrations.
+Complete language support and development assistant for Zoho Deluge scripting language with comprehensive IntelliSense for CRM, Desk, and all Zoho service integrations.
 
 ## Features
 
@@ -177,10 +177,8 @@ MIT License - see LICENSE file for details
 
 ## Author
 
-**Your Name**
-- Website: [your-website.com](https://your-website.com)
-- Email: your.email@example.com
-- GitHub: [@yourusername](https://github.com/yourusername)
+**Paul Matthews**
+- GitHub: [@paul-matthews-dev](https://github.com/paul-matthews-dev)
 
 Built with ❤️ for the Zoho developer community
 

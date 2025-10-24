@@ -1,7 +1,7 @@
 {
-    "name": "zoho-deluge",
-    "displayName": "Zoho Deluge",
-    "description": "Complete language support for Zoho Deluge with CRM, Desk, and all service integrations",
+    "name": "deluge-assistant",
+    "displayName": "Deluge Assistant",
+    "description": "Complete language support and development assistant for Zoho Deluge with CRM, Desk, and all service integrations",
     "version": "1.0.0",
     "publisher": "Paul Matthews",
     "author": {
@@ -54,7 +54,7 @@
             }
         ],
         "configuration": {
-            "title": "Zoho Deluge",
+            "title": "Deluge Assistant",
             "properties": {
                 "deluge.targetService": {
                     "type": "string",
@@ -73,8 +73,8 @@
         },
         "iconThemes": [
             {
-                "id": "deluge-icons",
-                "label": "Deluge File Icons",
+                "id": "deluge-assistant-icons",
+                "label": "Deluge Assistant File Icons",
                 "path": "./deluge-icon-theme.json"
             }
         ]
@@ -97,11 +97,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/yourusername/zoho-deluge-vscode"
+        "url": "https://github.com/yourusername/deluge-assistant"
     },
     "bugs": {
-        "url": "https://github.com/yourusername/zoho-deluge-vscode/issues"
+        "url": "https://github.com/yourusername/deluge-assistant/issues"
     },
-    "homepage": "https://github.com/yourusername/zoho-deluge-vscode#readme",
+    "homepage": "https://github.com/yourusername/deluge-assistant#readme",
     "license": "MIT"
 }

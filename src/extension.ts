@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Zoho Deluge extension is now active!');
+    console.log('Deluge Assistant extension is now active!');
 
     // Register completion provider
     const completionProvider = vscode.languages.registerCompletionItemProvider(

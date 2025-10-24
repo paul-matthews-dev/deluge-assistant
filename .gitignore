@@ -6,3 +6,5 @@ node_modules
 .DS_Store
 *.log
 .env
+PROJECT-SUMMARY.md
+QUICKSTART.md
